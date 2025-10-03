@@ -49,9 +49,19 @@
         const randomCountry = getRandomItem(Country);
         result = getRandomItem(randomCountry);
       } else if (type === "곱빼기") {
+        let menu1 = "", menu2 = "";
+
+        // 첫 번째 메뉴
         const randomCountry1 = getRandomItem(Country);
-        const randomCountry2 = getRandomItem(Country);
-        result = getRandomItem(randomCountry1) + " + " + getRandomItem(randomCountry2);
+        menu1 = getRandomItem(randomCountry1);
+
+        // 두 번째 메뉴 (첫 번째와 다를 때까지 반복)
+        do {
+          const randomCountry2 = getRandomItem(Country);
+          menu2 = getRandomItem(randomCountry2);
+        } while (menu1 === menu2);
+
+        result = menu1 + " + " + menu2;
       }
       document.getElementById("result").innerText = "오늘의 추천: " + result;
     }
