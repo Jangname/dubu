@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>저녁 메뉴 추천</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; padding: 40px; }
+    h1 { color: #333; }
+    button { margin: 10px; padding: 10px 20px; font-size: 16px; cursor: pointer; }
+    #result { margin-top: 20px; font-size: 24px; font-weight: bold; color: #ff5722; }
+  </style>
+</head>
+<body>
+  <h1>🍽️ 오늘 저녁 뭐 먹지?</h1>
+  <p>원하는 카테고리를 선택하세요:</p>
+  
+  <button onclick="pickMenu('한식')">한식</button>
+  <button onclick="pickMenu('양식')">양식</button>
+  <button onclick="pickMenu('중식')">중식</button>
+  <button onclick="pickMenu('일식')">일식</button>
+  <button onclick="pickMenu('아무거나')">아무거나</button>
+  <button onclick="pickMenu('곱빼기')">곱빼기</button>
+  
+  <div id="result"></div>
+
+  <script>
+    const koreanCuisine = ['국밥','백반','쌈밥','한정식','갈비찜','불고기','제육볶음','찜닭','삼계탕','오징어찌개','짜장밥','김치찌개','부대찌개','떡볶이'];
+    const westernCuisine = ['피자','파스타','햄버거','치킨','스테이크','샐러드','오믈렛','토스트','샌드위치','리조또','피자 슬라이스'];
+    const chineseCuisine = ['짜장면','짬뽕','탕수육','마라탕','잡채밥','군만두','볶음밥','마파두부'];
+    const japaneseCuisine = ['초밥','돈카츠','라멘','우동','덮밥','오야코동','회덮밥','미소된장국'];
+
+    const Country = [koreanCuisine, westernCuisine, chineseCuisine, japaneseCuisine];
+
+    function getRandomItem(arr) {
+      return arr[Math.floor(Math.random() * arr.length)];
+    }
+
+    function pickMenu(type) {
+      let result = "";
+      if (type === "한식") {
+        result = getRandomItem(koreanCuisine);
+      } else if (type === "양식") {
+        result = getRandomItem(westernCuisine);
+      } else if (type === "중식") {
+        result = getRandomItem(chineseCuisine);
+      } else if (type === "일식") {
+        result = getRandomItem(japaneseCuisine);
+      } else if (type === "아무거나") {
+        const randomCountry = getRandomItem(Country);
+        result = getRandomItem(randomCountry);
+      } else if (type === "곱빼기") {
+        const randomCountry1 = getRandomItem(Country);
+        const randomCountry2 = getRandomItem(Country);
+        result = getRandomItem(randomCountry1) + " + " + getRandomItem(randomCountry2);
+      }
+      document.getElementById("result").innerText = "오늘의 추천: " + result;
+    }
+  </script>
+</body>
+</html>
